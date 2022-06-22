@@ -1,8 +1,8 @@
 
-## A task-manager react app 
+## A task-manager react app using hooks(useState and useEffect)
 ### Hosted Project
 
-task-manager app on netlify]()
+task-manager app on netlify](https://task-manager-react-by-hb27.netlify.app/)
 
 #### Setup
 
