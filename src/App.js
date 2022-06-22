@@ -10,6 +10,9 @@ function App() {
   const [editID, setEditID] = useState(null);
   const [alert, setAlert] = useState({ show: false, msg: "", type: "" });
 
+  const showAlert = (show = false, type = "", msg = "") => {
+    setAlert({ show, type, msg });
+  };
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!name) {
@@ -18,15 +21,13 @@ function App() {
     } else if (name && isEditing) {
       // deal with edit
     } else {
-      // show alert
+      showAlert(true,'success','item added to list')
       const newItem = { id: uuidv4(), title: name };
       setList([...list, newItem]);
       setName("");
     }
   };
-const showAlert = (show=false,type="",msg="")=> {
-  setAlert({show,type,msg})
-}
+
   return (
     <section className='section-center'>
       <form className='grocery-form' onSubmit={handleSubmit}>
