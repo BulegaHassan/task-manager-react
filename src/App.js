@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import List from "./List";
 import Alert from "./Alert";
+import { v4 as uuidv4 } from "uuid";
 
 function App() {
   const [name, setName] = useState("");
@@ -11,7 +12,18 @@ function App() {
 
 const handleSubmit = (e)=> {
   e.preventDefault()
-  console.log('testing handler...');
+  if(!name){
+    //display alert
+  }
+  else if(name && isEditing){
+    // deal with edit
+  }
+  else {
+    // show alert
+    const newItem = {id: uuidv4(),title:name}
+    setList([...list,newItem])
+    setName('')
+  }
 }
 
   return (
@@ -26,10 +38,13 @@ const handleSubmit = (e)=> {
           </button>
         </div>
       </form>
+      {list.length > 0 && (
+
       <div className="grocery-contain">
-      <List/>
+      <List items={list}/>
       <button className="clear-btn">clear items</button>
       </div>
+      )}
     </section>
   )
 }
