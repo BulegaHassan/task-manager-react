@@ -31,10 +31,15 @@ const clearList = ()=> {
   showAlert(true,'danger','all items removed!')
   setList([])
 }
+const removeItem = (id)=> {
+  showAlert(true,'danger','item removed')
+  const newList = list.filter((item) => item.id !== id)
+  setList(newList)
+}
   return (
     <section className='section-center'>
       <form className='grocery-form' onSubmit={handleSubmit}>
-        {alert.show && <Alert {...alert} removeAlert={showAlert} />}
+        {alert.show && <Alert {...alert} removeAlert={showAlert} list={list} />}
         <h3>task manager</h3>
         <div className='form-control'>
           <input
@@ -51,8 +56,10 @@ const clearList = ()=> {
       </form>
       {list.length > 0 && (
         <div className='grocery-contain'>
-          <List items={list} />
-          <button className='clear-btn' onClick={clearList}>clear items</button>
+          <List items={list} removeItem={removeItem} />
+          <button className='clear-btn' onClick={clearList}>
+            clear items
+          </button>
         </div>
       )}
     </section>
